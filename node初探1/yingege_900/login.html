@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="stylesheet" href="AmazeUI-2.4.2/assets/css/amazeui.css" />
+		<link rel="stylesheet" type="text/css" href="css/dlstyle.css" />
+	</head>
+
+	<body>
+		<div class="login-banner">
+			<div class="login-main">
+				<div class="login-box">
+					<h3 class="title" style="color: white;">登录</h3>
+					<div class="clear"></div>
+					<div class="login-form">
+						<form>
+							<div class="user-name">
+								<label for="user"><i class="am-icon-user"></i></label>
+								<input type="text" name="" id="user" placeholder="邮箱/手机/用户名">
+							</div>
+							<div class="user-pass">
+								<label for="password"><i class="am-icon-lock"></i></label>
+								<input type="password" name="" id="password" placeholder="请输入密码">
+							</div>
+						</form>
+					</div>
+
+					<div class="login-links">
+						<label for="remember-me" style="color: white;"><input id="remember-me" type="checkbox">记住密码</label>
+						<a href="#" class="am-fr" style="color: white;">忘记密码</a>
+						<!--<a href="register.html" class="zcnext am-fr am-btn-default">注册</a>-->
+						<br />
+					</div>
+					<div class="am-cf">
+						<input type="submit" name="" id="login" value="登 录" class="am-btn am-btn-warning am-btn-sm">
+						<input type="submit" name="" id="reg" value="注册" class="am-btn am-btn-warning am-btn-sm">
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="jquery/jquery-1.12.3.min.js"></script>
+<script src="jquery/amazeui.min.js"></script>
+<script src="js/oem.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	//	$(function(){
+	//		var u = document.URL;
+	//		console.log(u);
+	//		$.ajax({
+	//			url:u+'noLogin',
+	//			type:'POST',
+	//			data:{},
+	//			success:function(info){
+	//				info = JSON.parse(info);
+	//				console.log(info);
+	//				var basejson;
+	//				if(info.oem_name == 'bflq') {
+	//					basejson = '/bflq.json'
+	//				} else if(info.oem_name == 'clousoft') {
+	//					basejson = '/clousoft.json'
+	//				} else if(info.oem_name == 'dwbap') {
+	//					basejson = '/dwbap.json'
+	//				} else if(info.oem_name == 'zjsp') {
+	//					basejson = '/zjsp.json'
+	//				} else if(info.oem_name == 'fudan'){
+	//					basejson = '/fudan.json'
+	//				}
+	//				
+	//				$.getJSON('./oem/' + info.oem_name + basejson, function(data) {
+	//					//初始化登陆界面背景图片。
+	//					$('.login-banner').css('background-image', 'url(' + data.bg + ')')
+	//				})
+	//				if(info.noLogin=='ok'){
+	//					window.location.href = 'test.html';
+	//					sessionStorage.setItem("cloubox03_userName",info.userName);
+	//					document.body.onkeydown = function (e) {
+	//						e = e||event; 
+	//					   	e.preventDefault()
+	//					}
+	//					document.addEventListener("click",function(event){
+	//						event.stopPropagation();//在捕获阶段，阻止事件往下传递，则按钮上的事件不可能得到触发。
+	//					},true)
+	//					
+	//					document.addEventListener("dblclick",function(event){
+	//						event.stopPropagation();//在捕获阶段，阻止事件往下传递，则按钮上的事件不可能得到触发。
+	//					},true)
+	//				}else{
+	//					return;
+	//				}
+	//			}
+	//		})
+	//	})
+
+	$('#login').click(function(evt) {
+		evt.preventDefault();
+		var u = document.URL;
+		$.ajax({
+			url: u + 'login',
+			type: 'POST',
+			data: {
+				name: $('#user').val(),
+				password: $('#password').val()
+			},
+			success: function(data) {
+				data = JSON.parse(data)
+				if(data.login_result == "ok") {
+					window.location.href = 'test.html';
+				} else if(data.login_result == "no_login") {
+					alert("用户名或密码错误")
+				}
+
+				//				if(data.location.username == 'notok') {
+				//					alert('尚未注册')
+				//					//window.location.href = 'http://www.baidu.com';
+				//				} else if(data.location.username == 'ok' && data.location.password == 'ok') {
+				//					window.location.href = 'test.html';
+				//					sessionStorage.setItem("cloubox03_userName", data.location.name);
+				//					sessionStorage.setItem("cloubox03_passWord", data.location.pwd);
+				//				} else if(data.location.username == 'ok' && data.location.password == 'notok') {
+				//					alert('密码错误')
+				//				} else if(data.location.username == 'nofree' && data.location.password == 'notok') {
+				//					alert('此用户已登录！')
+				//				}
+				console.info(data)
+			}
+		});
+	})
+
+	$('#reg').click(function(evt) {
+		evt.preventDefault();
+		var u = document.URL;
+		$.ajax({
+			url: u + 'register',
+			type: 'POST',
+			data: {
+				name: $('#user').val(),
+				password: $('#password').val()
+			},
+			success: function(data) {
+				data = JSON.parse(data)
+				if(data.register_result == "ok") {
+					alert("注册成功")
+				} else if(data.register_result == "repeat") {
+					alert("用户名重复")
+				}
+
+				//				if(data.location.username == 'notok') {
+				//					alert('尚未注册')
+				//					//window.location.href = 'http://www.baidu.com';
+				//				} else if(data.location.username == 'ok' && data.location.password == 'ok') {
+				//					window.location.href = 'test.html';
+				//					sessionStorage.setItem("cloubox03_userName", data.location.name);
+				//					sessionStorage.setItem("cloubox03_passWord", data.location.pwd);
+				//				} else if(data.location.username == 'ok' && data.location.password == 'notok') {
+				//					alert('密码错误')
+				//				} else if(data.location.username == 'nofree' && data.location.password == 'notok') {
+				//					alert('此用户已登录！')
+				//				}
+				console.info(data)
+			}
+		});
+
+	})
+	//	$('#login').click(function(evt) {
+	//		evt.preventDefault();
+	//		var u = document.URL;
+	//		console.log(u);
+	//		$.ajax({
+	//			url: u+'saveJSON',
+	//			type: 'POST',
+	//			data: {
+	//				name: $('#user').val(),
+	//				password: $('#password').val()
+	//			},
+	//			success: function(data) {
+	//				data = JSON.parse(data)
+	//				if(data.location.username == 'notok') {
+	//					alert('尚未注册')
+	//					//window.location.href = 'http://www.baidu.com';
+	//				} else if(data.location.username == 'ok' && data.location.password == 'ok') {
+	//					window.location.href = 'test.html';
+	//					sessionStorage.setItem("cloubox03_userName",data.location.name);
+	//					sessionStorage.setItem("cloubox03_passWord",data.location.pwd);
+	//				} else if(data.location.username == 'ok' && data.location.password == 'notok') {
+	//					alert('密码错误')
+	//				}else if(data.location.username == 'nofree' && data.location.password == 'notok') {
+	//					alert('此用户已登录！')
+	//				}
+	//			}
+	//		});
+	//	});
+	//	document.onkeydown=function mykeyDown(e){    
+	//	    e = e||event;  
+	//	    if(e.keyCode == 13) {$('#login').click()}   
+	//	    return;  
+	//	}
+</script>
