@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>测试页面</div>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>姓名</th>
+					<th>年龄</th>
+				</tr>
+			</thead>
+			<tbody id="table_test"></tbody>
+		</table>
+		<script>
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]);
+				return null;
+			}
+			let data = JSON.parse(GetQueryString("data"))
+			console.info(data)
+			let str = "<tr>"
+			for (let i = 0; i < data.length; i++) {
+				for (let j in data[i]) {
+					str += "<td>" + data[i][j] + "</td>"
+				}
+
+			}
+			str += "</tr>"
+			let table_test = document.getElementById("table_test")
+			table_test.innerHTML = str
+		</script>
+	</body>
+</html>
