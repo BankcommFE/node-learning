@@ -1,0 +1,6 @@
+2020/02/08 21:33:54 [error] 61172#48284: *1 CreateFile() "C:\Users\99589\Downloads\nginx-1.16.1\nginx-1.16.1/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2020/02/08 21:37:43 [error] 61172#48284: *4 CreateFile() "C:\Users\99589\Downloads\nginx-1.16.1\nginx-1.16.1/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "www.shihui.com", referrer: "http://www.shihui.com/"
+2020/02/08 21:41:33 [notice] 59476#60736: signal process started
+2020/02/08 21:42:33 [notice] 59952#59948: signal process started
+2020/02/08 21:45:28 [notice] 61048#59824: signal process started
+2020/02/08 21:50:30 [notice] 59456#58044: signal process started
