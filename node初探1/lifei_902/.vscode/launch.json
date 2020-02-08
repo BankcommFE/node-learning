@@ -1,0 +1,54 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "node app.js启动",
+            "runtimeExecutable": "nodemon",
+            "restart": true,
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "program": "${workspaceFolder}/app.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        // {
+        //     "type": "node",
+        //     "request": "launch",
+        //     "name": "nodemon",
+        //     "runtimeExecutable": "nodemon",
+        //     "program": "${workspaceFolder}/app.js",
+        //     "restart": true,
+        //     "console": "integratedTerminal",
+        //     "internalConsoleOptions": "neverOpen",
+        //     "skipFiles": [
+        //         "<node_internals>/**"
+        //     ]
+        // },
+        {
+            "name": "npm start 启动",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run-script", "start"],
+            "port": 9229
+          },
+        
+        {
+            "name": "Launch localhost",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000/table/index.html?data=%5B%7B%22name%22%3A%22zhangsan%22%2C%22age%22%3A%2220%22%7D%5D",
+            "webRoot": "${workspaceFolder}/routes"
+        },
+        {
+            "name": "Launch index.html",
+            "type": "chrome",
+            "request": "launch",
+            "file": "${workspaceFolder}/index.html"
+        },
+    ]
+}
