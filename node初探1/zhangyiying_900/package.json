@@ -1,0 +1,22 @@
+{
+  "name": "zhangyiying_900",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "http-errors": "^1.7.3",
+    "jade": "^1.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

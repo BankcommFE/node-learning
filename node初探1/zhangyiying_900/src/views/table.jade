@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  table
+    tr
+        each value in titleArr
+            th #{value}
+    each value in data
+        tr
+            each val in value
+                td #{val}
+
+   
