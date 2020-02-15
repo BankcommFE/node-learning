@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+
+  table(border="1")
+    tr
+        each val in titleArr
+            th= val
+
+    each val in data
+        tr
+             each prop in titleArr
+                td=val[prop]
