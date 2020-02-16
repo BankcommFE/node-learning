@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>   
+    <script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" id='file'> 
+    <button onclick="downUpload()">上传图片</button>
+    <img src="" alt="" width="300" >
+    <div id="text"></div>
+</body>
+<script>
+    
+    function downUpload(){
+        let file = $('#file').get(0).files[0]; //获取图片
+        let formData = new FormData();
+        formData.append('imgUrl',file)
+        axios.post('/upload', formData)
+        .then(function (response) {
+            console.log(response)
+            if(response.data.err == 0){
+                $('img').attr('src',`http://localhost:3000${response.data.imgUrl}`)
+                $('#text').html(response.data.msg)
+            }else{
+                alert('上传失败请重试')
+            }
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+        // $.ajax({
+        //     url: 'http://localhost:3000/upload',
+        //     data:formData,
+        //     type:'POST',
+        //     processData: false,//必须
+        //     contentType: false,//必须
+        //     success: function(data){
+        //         console.log(data)
+        //         if(data.err == 0){
+        //             alert(data.msg)
+        //             $('img').attr('src',`http://localhost:3000${data.imgUrl}`)
+        //             $('#text').html(data.msg)
+        //         }else{
+        //             alert('上传失败请重试')
+        //         }
+        //     }
+        // })
+    }
+</script>
+</html>
